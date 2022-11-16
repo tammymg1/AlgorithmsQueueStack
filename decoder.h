@@ -33,7 +33,7 @@ public:
     // is the shortest path to the point which is farthest from the
     // start in the embedded maze. Solution path is drawn in (255,0,0).
     // This function assumes that the pathPts member variable has been
-    // populated by the constructor. //pathPts populated by the consttructor OKAY
+    // populated by the constructor. 
 	PNG renderSolution();
 
 	// discovers and draws the entire maze on top of the given image. 

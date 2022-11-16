@@ -40,7 +40,7 @@ T Deque<T>::popL()
     T out = data.at(n1); // tests nice way to check methods 
     //data.erase(data.begin() + n1); // no need to do it (n1 increments and resize takes care of it) + O(n)
     n1++;
-    if (n2 - n1 <= n1){ //** how did he make dequeue tests?
+    if (n2 - n1 <= n1){ //dequeue tests - not required
         vector<T> newVector;
         //int index = 0;
         //n2--;
@@ -64,10 +64,11 @@ T Deque<T>::popL()
  */
 template <class T>
 T Deque<T>::popR()
-{
+{    
     T out = data.at(n2-1);
-    //data.erase(data.begin() + n2); 
-    n2--;
+    data.erase(data.begin() + n2 - 1);  // they expect you too (wihtout looking at the test LMAO - always ask TAs)
+    // JATT Busy
+    n2--; 
     if (n2 - n1 <= n1){
         vector<T> newVector;
         //int index = 0;

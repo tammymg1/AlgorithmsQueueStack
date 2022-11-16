@@ -55,18 +55,16 @@ TEST_CASE("treasureMap::basic no cycles", "[weight=1][part=treasureMap]")
     decoder dec(treasure,start);
 
     PNG soln = dec.renderSolution();
-    //soln.writeToFile("images/solnsnake.png");
+    soln.writeToFile("images/solnsnak.png");
     PNG solnans;
     solnans.readFromFile("images/solnsnake.png");
     REQUIRE( soln == solnans );
 
     PNG solnmaze = dec.renderMaze();
-    //solnmaze.writeToFile("images/solnsnakemaze.png");
+    solnmaze.writeToFile("images/solnsnakemaz.png");
     PNG solnmazeans;
     solnmazeans.readFromFile("images/solnsnakemaze.png");
     REQUIRE( solnmaze == solnmazeans );
-
-    
 
 }
 
@@ -83,7 +81,7 @@ TEST_CASE("decoder::basic cycles", "[weight=1][part=decoder]")
     treasureMap M(base, maze, start);
 
     PNG treasure = M.renderMap();
-	//treasure.writeToFile("images/embeddedmaze.png");
+	//treasure.writeToFile("images/embeddedmaz.png");
     PNG treasureans;
     treasureans.readFromFile("images/embeddedmaze.png");
     REQUIRE( treasure == treasureans );
@@ -97,13 +95,13 @@ TEST_CASE("decoder::basic cycles", "[weight=1][part=decoder]")
     decoder dec(treasure,start);
 
     PNG soln = dec.renderSolution();
-    //soln.writeToFile("images/solnmaze.png");
+    soln.writeToFile("images/solnmaz.png");
     PNG solnans;
     solnans.readFromFile("images/solnmaze.png");
     REQUIRE( soln == solnans );
 
     PNG solnmaze = dec.renderMaze();
-    //solnmaze.writeToFile("images/solnmazemaze.png");
+    solnmaze.writeToFile("images/solnmazemaz.png");
     PNG solnmazeans;
     solnmazeans.readFromFile("images/solnmazemaze.png");
     REQUIRE( solnmaze == solnmazeans );

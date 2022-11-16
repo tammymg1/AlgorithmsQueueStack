@@ -22,7 +22,7 @@ void treasureMap::setGrey(PNG & im, pair<int,int> loc){
 }
 
 void treasureMap::setLOB(PNG & im, pair<int,int> loc, int d){
-    //** why are we using dereferencing
+    //why are we using dereferencing - RGBA Pixel is a pointer
 
     RGBAPixel* location = im.getPixel(loc.first, loc.second);
     location->r = ((location->r >> 2) << 2) + ((d / 16) % 4);
@@ -36,16 +36,16 @@ PNG treasureMap::renderMap(){
 
     PNG map = base;
 
-    vector<vector<bool>> visited(base.width(), vector<bool> (base.height(), false)); //** tf this means
-    vector<vector<int>> shortestlenghts(base.width(), vector<int> (base.height(), 0)); //** tf this means (width height) //** for loop with base and a height? 
+    vector<vector<bool>> visited(base.width(), vector<bool> (base.height(), false)); 
+    vector<vector<int>> shortestlenghts(base.width(), vector<int> (base.height(), 0)); // (width height) 
     
-    //** seach double vectors learning to initialize
+    //double vectors initialized
 
     Queue<pair<int,int>> explored;
 
     visited[start.first][start.second] = true;
-    shortestlenghts[start.first][start.second] = 0; //** both set to 0?
-    setLOB(map, start, 0); //** d = 0? (encode distance)
+    shortestlenghts[start.first][start.second] = 0; //both set to 0 //next +1
+    setLOB(map, start, 0); //d = 0 (encode distance)
     explored.enqueue(start);
 
     while (!explored.isEmpty()) {
@@ -68,11 +68,11 @@ PNG treasureMap::renderMap(){
     // just draw the existing portion of the square. The start 
     // should be at the center of the square.
 
-PNG treasureMap::renderMaze(){ //** renderMaze + renderMap (embedded vs greyed)
+PNG treasureMap::renderMaze(){ 
 
 
     PNG mapMaze = base; //PNG(base)
-    vector<vector<bool>> visited(base.width(), vector<bool> (base.height())); //** without false wrong?
+    vector<vector<bool>> visited(base.width(), vector<bool> (base.height())); //default is false 
     Queue<pair<int,int>> explored;
 
     visited[start.first][start.second] = true;
@@ -80,7 +80,7 @@ PNG treasureMap::renderMaze(){ //** renderMaze + renderMap (embedded vs greyed)
 
     while (!explored.isEmpty()) {
         pair<int,int> curr = explored.dequeue(); 
-        for (pair<int,int> p : neighbors(curr)) { //(only Maze grey)
+        for (pair<int,int> p : neighbors(curr)) { //(only Maze grey) = good
             if (good(visited, curr, p)) {
                 visited[p.first][p.second] = true;
                 setGrey(mapMaze, p); 
@@ -102,7 +102,7 @@ PNG treasureMap::renderMaze(){ //** renderMaze + renderMap (embedded vs greyed)
             int x = start.first + col;
             int y = start.second + row;
             if (x >= 0 && x < (int)base.width() && y >= 0 && y < (int)base.height()){
-                RGBAPixel* p = mapMaze.getPixel(x, y); //** why pointer
+                RGBAPixel* p = mapMaze.getPixel(x, y); //RGBA get Pixel *
                 p->b = 0;
                 p->g = 0;
                 p->r = 255;
@@ -120,7 +120,7 @@ bool treasureMap::good(vector<vector<bool>> & v, pair<int,int> curr, pair<int,in
 
 if (next.first >= 0 && next.first < (int) base.width()){ //warnings cast to (int), irrelevant
         if (next.second >= 0 && next.second < (int) base.height()){
-            if (v[next.first][next.second] == false){ //** thats how you get location? 
+            if (v[next.first][next.second] == false){ //2D vector or array -> location 
                 if (*maze.getPixel(next.first, next.second) == (*maze.getPixel(curr.first, curr.second))) { //** whats the ->operator
                 // pointer maze.getPixel (dereferencing) ->
                     return true;

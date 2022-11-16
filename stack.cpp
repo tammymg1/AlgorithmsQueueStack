@@ -5,20 +5,20 @@
  */
 
 /**
- * Adds the parameter object to the top of the Stack. 
+ * Adds the parameter object to the top of the Stack.
  *
  * @note This function must be O(1)!
  *
  * @param newItem The object to be added to the Stack.
  */
-template<class T>
+template <class T>
 void Stack<T>::push(T newItem)
 {
-    myStack.pushR(newItem);     // stack only one side push and pop
+    myStack.pushR(newItem); // stack only one side push and pop
 }
 
 /**
- * Removes the object on top of the Stack, and returns it. 
+ * Removes the object on top of the Stack, and returns it.
  * You may assume this function
  * is only called when the Stack is not empty.
  *
@@ -30,12 +30,11 @@ template <class T>
 T Stack<T>::pop()
 {
     return myStack.popR();
-    
 }
 
 /**
  * Finds the object on top of the Stack, and returns it to the caller.
- * Unlike pop(), this operation does not alter the Stack itself. 
+ * Unlike pop(), this operation does not alter the Stack itself.
  * You may assume this function is only
  * called when the Stack is not empty.
  *
@@ -50,13 +49,12 @@ T Stack<T>::peek()
 /**
  * Determines if the Stack is empty.
  *
- * @note This function must be O(1)! 
+ * @note This function must be O(1)!
  *
  * @return Whether or not the stack is empty (bool).
  */
 template <class T>
 bool Stack<T>::isEmpty() const
 {
-    return myStack.isEmpty(); //new addition
-
+    return myStack.isEmpty(); // new addition
 }
